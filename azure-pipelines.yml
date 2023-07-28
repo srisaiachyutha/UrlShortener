@@ -31,5 +31,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
-    projects: '**/webtest.csproj'
+    projects: '**/*.Tests.csproj'
     configuration: '$(buildConfiguration)'
