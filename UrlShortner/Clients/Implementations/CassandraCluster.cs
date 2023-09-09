@@ -7,7 +7,7 @@ namespace UrlShortner.Clients.Implementations
     public class CassandraCluster : ICassandraCluster, IDisposable
     {
         private readonly ICluster _cluster;
-        private string localFilePath = $"../Certificates/{ApplicationSettings.SecureConnectionBundlePath}";
+        private string localFilePath = ApplicationSettings.BlobName;
         public CassandraCluster()
         {
            
