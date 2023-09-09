@@ -19,7 +19,7 @@ namespace UrlShortner
             ApplicationSettings.ConnectionString = builder.Configuration.GetValue<string>("ApplicationSettings:StorageAccountConnection"); // Replace with your Azure Blob Storage connection string
             ApplicationSettings.ContainerName = builder.Configuration.GetValue<string>("ApplicationSettings:ContainerName");       // Replace with your container name
             ApplicationSettings.BlobName = builder.Configuration.GetValue<string>("ApplicationSettings:BlobName");                // Replace with the name of the blob you want to download
-            string localFilePath = $"./wwwroot/{ApplicationSettings.BlobName}";           // Replace with the local file path where you want to save the downloaded file
+            string localFilePath = $"/home/site/wwwroot/{ApplicationSettings.BlobName}";           // Replace with the local file path where you want to save the downloaded file
 
 
             if (!File.Exists(localFilePath))
