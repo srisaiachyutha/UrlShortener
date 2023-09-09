@@ -30,7 +30,7 @@ namespace UrlShortner.Clients.Implementations
             var cluster = Cluster.Builder()
                 //.WithCloudSecureConnectionBundle(@"C:\Users\psrisaiachyutha\Downloads\secure-connect-db-tinyurl.zip")
 
-            .WithCloudSecureConnectionBundle(ApplicationSettings.SecureConnectionBundlePath)
+            .WithCloudSecureConnectionBundle(@ApplicationSettings.SecureConnectionBundlePath)
             .WithCredentials(
                 ApplicationSettings.UserId, 
                 ApplicationSettings.SecurePassword)
