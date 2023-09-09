@@ -1,9 +1,9 @@
 namespace UrlShortner
 {
-    public class ApplicationSettings
+    public static class ApplicationSettings
     {
-        public string UserId { get; set; }
-        public string SecurePassword { get; set; }
-        public string SecureConnectionBundlePath { get; set; }
+        public static string UserId { get; set; } = null!;
+        public static string SecurePassword { get; set; } = null!;
+        public static string SecureConnectionBundlePath { get; set; } = null!;
     }
 }

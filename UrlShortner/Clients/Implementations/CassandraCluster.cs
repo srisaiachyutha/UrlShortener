@@ -7,10 +7,10 @@ namespace UrlShortner.Clients.Implementations
     public class CassandraCluster : ICassandraCluster, IDisposable
     {
         private readonly ICluster _cluster;
-        private readonly ApplicationSettings _applicationSettings;
-        public CassandraCluster(IOptions<ApplicationSettings> applicationSettings)
+        
+        public CassandraCluster()
         {
-            _applicationSettings = applicationSettings.Value;
+           
             _cluster = CreateCluster();
         }
 
@@ -30,10 +30,10 @@ namespace UrlShortner.Clients.Implementations
             var cluster = Cluster.Builder()
                 //.WithCloudSecureConnectionBundle(@"C:\Users\psrisaiachyutha\Downloads\secure-connect-db-tinyurl.zip")
 
-            .WithCloudSecureConnectionBundle(_applicationSettings.SecureConnectionBundlePath)
+            .WithCloudSecureConnectionBundle(ApplicationSettings.SecureConnectionBundlePath)
             .WithCredentials(
-                _applicationSettings.UserId, 
-                _applicationSettings.SecurePassword)
+                ApplicationSettings.UserId, 
+                ApplicationSettings.SecurePassword)
             .Build();
             return cluster;
         }

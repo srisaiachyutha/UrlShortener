@@ -9,8 +9,12 @@ namespace UrlShortner
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("ApplicationSettings"));
-
+            //builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("ApplicationSettings"));
+            ApplicationSettings.UserId = builder.Configuration.GetValue<string>("ApplicationSettings:UserId");
+            ApplicationSettings.SecureConnectionBundlePath = builder.Configuration.GetValue<string>("ApplicationSettings:SecureConnectionBundlePath");
+            ApplicationSettings.SecurePassword = builder.Configuration.GetValue<string>("ApplicationSettings:SecurePassword");
+            
+            
             builder.Services.AddControllersWithViews();
             // Add MVC services to the container.
             builder.Services.AddMvc();
