@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Url Shortner";
+}
+@model UrlShortner.Models.EncodeUrlResponse 
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome to URL shortner</h1>
+    <form>
+      <label for="url">Enter URL</label>
+      <input 
+        type="url" 
+        name="url" 
+        id="url" 
+        placeholder="https://example.com" 
+        pattern="https://.*" 
+        size="30" 
+        required />
+      <button type="submit" name="button" >Submit</button>
+    </form>
+</div>*@
+
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+        <table>
+            <tr>
+                <td>First Name: </td>
+                <td>
+                    <input 
+                    type="url" 
+                    name="url" 
+                    id="url" 
+                    placeholder="https://example.com" 
+                    pattern="https://.*" 
+                    size="30" 
+                    required />
+                </td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"/></td>
+            </tr>
+        </table>
+</form>
+
+
+
+
