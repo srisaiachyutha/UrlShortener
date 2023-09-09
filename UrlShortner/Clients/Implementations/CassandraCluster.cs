@@ -7,7 +7,7 @@ namespace UrlShortner.Clients.Implementations
     public class CassandraCluster : ICassandraCluster, IDisposable
     {
         private readonly ICluster _cluster;
-        
+        private string localFilePath = $"../Certificates/{ApplicationSettings.SecureConnectionBundlePath}";
         public CassandraCluster()
         {
            
@@ -30,7 +30,7 @@ namespace UrlShortner.Clients.Implementations
             var cluster = Cluster.Builder()
                 //.WithCloudSecureConnectionBundle(@"C:\Users\psrisaiachyutha\Downloads\secure-connect-db-tinyurl.zip")
 
-            .WithCloudSecureConnectionBundle(@ApplicationSettings.SecureConnectionBundlePath)
+            .WithCloudSecureConnectionBundle(localFilePath)
             .WithCredentials(
                 ApplicationSettings.UserId, 
                 ApplicationSettings.SecurePassword)

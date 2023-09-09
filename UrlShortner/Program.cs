@@ -1,5 +1,7 @@
 ﻿using UrlShortner.Clients.Implementations;
 using UrlShortner.Clients.Interfaces;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 
 namespace UrlShortner
 {
@@ -14,6 +16,27 @@ namespace UrlShortner
             ApplicationSettings.SecureConnectionBundlePath = builder.Configuration.GetValue<string>("ApplicationSettings:SecureConnectionBundlePath");
             ApplicationSettings.SecurePassword = builder.Configuration.GetValue<string>("ApplicationSettings:SecurePassword");
             
+            ApplicationSettings.ConnectionString = builder.Configuration.GetValue<string>("ApplicationSettings:StorageAccountConnection"); // Replace with your Azure Blob Storage connection string
+            ApplicationSettings.ContainerName = builder.Configuration.GetValue<string>("ApplicationSettings:ContainerName");       // Replace with your container name
+            ApplicationSettings.BlobName = builder.Configuration.GetValue<string>("ApplicationSettings:BlobName");                // Replace with the name of the blob you want to download
+            string localFilePath = $"./Certificates/{ApplicationSettings.BlobName}";           // Replace with the local file path where you want to save the downloaded file
+
+
+            if (!File.Exists(localFilePath))
+            {
+                BlobServiceClient blobServiceClient = new(ApplicationSettings.ConnectionString);
+                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(ApplicationSettings.ContainerName);
+                BlobClient blobClient = containerClient.GetBlobClient(ApplicationSettings.BlobName);
+
+                BlobDownloadInfo blobDownloadInfo = await blobClient.DownloadAsync();
+
+                using (FileStream fs = File.OpenWrite(localFilePath))
+                {
+                    await blobDownloadInfo.Content.CopyToAsync(fs);
+                    fs.Close();
+                }
+            }
+
             
             builder.Services.AddControllersWithViews();
             // Add MVC services to the container.
