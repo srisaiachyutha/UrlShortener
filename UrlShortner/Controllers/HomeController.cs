@@ -46,14 +46,13 @@ namespace UrlShortner.Controllers
             
             
             string host = Request.HttpContext.Request.Host.ToString();
-            //_logger.LogError(d); 
             
             if (string.IsNullOrEmpty(code))
                 return NotFound();
             else
                 return View("Response", new EncodeUrlResponse {
                     OriginalUrl = url,
-                    EncodedCode = $"htpps://{host}/{code}"
+                    EncodedCode = $"https://{host}/{code}"
                 });
         }
 
