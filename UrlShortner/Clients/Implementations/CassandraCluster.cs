@@ -32,8 +32,8 @@ namespace UrlShortner.Clients.Implementations
 
             .WithCloudSecureConnectionBundle(_applicationSettings.SecureConnectionBundlePath)
             .WithCredentials(
-                _applicationSettings.UserName, 
-                _applicationSettings.Password)
+                _applicationSettings.UserId, 
+                _applicationSettings.SecurePassword)
             .Build();
             return cluster;
         }
